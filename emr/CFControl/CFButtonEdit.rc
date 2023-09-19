@@ -1,0 +1,7 @@
+DROPDOWN    Bitmap    "Resource\\DROPDOWN.bmp"
+FIND    Bitmap    "Resource\\FIND.bmp"
+LOOKUP    Bitmap    "Resource\\LOOKUP.bmp"
+FOLD    Bitmap    "Resource\\FOLD.bmp"
+NEW    Bitmap    "Resource\\NEW.bmp"
+OPEN    Bitmap    "Resource\\OPEN.bmp"
+DATETIME    Bitmap    "Resource\\DATETIME.bmp"

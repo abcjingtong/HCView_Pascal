@@ -1,0 +1,60 @@
+package CFControl_dcl_102;
+
+{$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS OFF}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO OFF}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE RELEASE}
+{$ENDIF IMPLICITBUILDING}
+{$IMPLICITBUILD ON}
+
+requires
+  rtl,
+  designide,
+  dbrtl,
+  vclimg;
+
+contains
+  CFListView in 'CFListView.pas',
+  CFControlReg in 'CFControlReg.pas',
+  CFDateTimePicker in 'CFDateTimePicker.pas',
+  CFEdit in 'CFEdit.pas',
+  CFSafeEdit in 'CFSafeEdit.pas',
+  CFPageControl in 'CFPageControl.pas',
+  CFButton in 'CFButton.pas',
+  CFSplitter in 'CFSplitter.pas',
+  CFGridEdit in 'CFGridEdit.pas',
+  CFButtonEdit in 'CFButtonEdit.pas',
+  CFPopupEdit in 'CFPopupEdit.pas',
+  CFDateRang in 'CFDateRang.pas',
+  CFCombobox in 'CFCombobox.pas',
+  CFMonthCalendar in 'CFMonthCalendar.pas',
+  CFDBGrid in 'CFDBGrid.pas',
+  CFGrid in 'CFGrid.pas',
+  CFColorPad in 'CFColorPad.pas',
+  CFColorCombobox in 'CFColorCombobox.pas',
+  CFPopupFormBase in 'CFPopupFormBase.pas' {frmPopupFormBase},
+  CFGridTree in 'CFGridTree.pas',
+  CFLable in 'CFLable.pas',
+  CFToolButton in 'CFToolButton.pas';
+
+end.
