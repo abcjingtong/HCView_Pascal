@@ -1968,7 +1968,7 @@ begin
   end;
   {$ENDREGION}
 
-  PaperCoordToData(FActivePageIndex, FActiveData, vX, vY);
+  PaperCoordToData(FActivePageIndex, FActiveData, vX, vY, not FActiveData.SelectExists());
 
   if FActiveData = FPage then
     vY := vY + GetPageDataFmtTop(FActivePageIndex);
@@ -2070,6 +2070,8 @@ begin
     vY := vY + GetPageDataFmtTop(FMousePageIndex);
 
   FActiveData.MouseMove(Shift, vX, vY);
+  if FMoveData <> FActiveData then
+    GCursor := crDefault;
 end;
 
 procedure THCCustomSection.MouseUp(Button: TMouseButton; Shift: TShiftState; X,
