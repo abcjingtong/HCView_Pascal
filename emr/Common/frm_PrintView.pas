@@ -512,13 +512,13 @@ begin
     vPaintInfo.WindowWidth := FDrawWidth;
     vPaintInfo.WindowHeight := FDrawHeight;
 
-    if FHCView.Sections[vSection].Page.DataAnnotates.Count > 0 then
+    {if FHCView.Sections[vSection].Page.DataAnnotates.Count > 0 then
     begin
       vPaintInfo.Zoom := vZoom * FHCView.Sections[vSection].PaperWidthPix / (FHCView.Sections[vSection].PaperWidthPix + AnnotationWidth);
       vPaintInfo.ScaleX := vPaintInfo.Zoom;
       vPaintInfo.ScaleY := vPaintInfo.Zoom;
     end
-    else
+    else}
     begin
       vPaintInfo.ScaleX := vZoom;
       vPaintInfo.ScaleY := vZoom;
