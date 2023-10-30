@@ -1491,9 +1491,10 @@ begin
         UndoAction_ItemMirror(SelectInfo.StartItemNo, OffsetInner);
 
       vFormatFirstDrawItemNo := GetFormatFirstDrawItem(Items[SelectInfo.StartItemNo].FirstDItemNo);
-      FormatPrepare(vFormatFirstDrawItemNo, SelectInfo.StartItemNo);
+      vFormatLastItemNo := GetParaLastItemNo(SelectInfo.StartItemNo);
+      FormatPrepare(vFormatFirstDrawItemNo, vFormatLastItemNo);
       (Items[SelectInfo.StartItemNo] as THCCustomRectItem).ApplySelectParaStyle(Self.Style, AMatchStyle);
-      ReFormatData(vFormatFirstDrawItemNo, SelectInfo.StartItemNo);
+      ReFormatData(vFormatFirstDrawItemNo, vFormatLastItemNo);
     end
     else
     begin
@@ -2308,6 +2309,23 @@ begin
 
           vMerged := True;
         end;
+      end;
+    end
+    else  // 新插入的文本Item是另起一段
+    begin
+      if (AItem.Text = '') and (AIndex < Items.Count) and not Items[AIndex].ParaFirst then  // 是个回车，并且插入位置不是段首 XL20230808002
+      begin
+        AItem.Free;
+        GetFormatRangeByOffset(AIndex, 1, vFormatFirstDrawItemNo, vFormatLastItemNo);
+        FormatPrepare(vFormatFirstDrawItemNo, vFormatLastItemNo);
+
+        UndoAction_ItemParaFirst(AIndex, 0, True);
+        Items[AIndex].ParaFirst := True;
+
+        ReFormatData(vFormatFirstDrawItemNo, vFormatLastItemNo, 0);
+        ReSetSelectAndCaret(AIndex);
+
+        vMerged := True;
       end;
     end;
 
@@ -5665,6 +5683,7 @@ begin
   begin
     if not DeleteSelected then Exit;
     if Key in [VK_BACK, VK_DELETE] then Exit;
+    vCurItem := GetActiveItem;
   end;
 
   GetParaItemRang(SelectInfo.StartItemNo, vParaFirstItemNo, vParaLastItemNo);
