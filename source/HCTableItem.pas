@@ -2164,7 +2164,10 @@ begin
     FRows[FMouseMoveRow][FMouseMoveCol].CellData.MouseLeave;  // .MouseMove([], -1, -1);  // 处理鼠标移上高亮在迅速移出表格后不能恢复的问题
 
   if not SelectExists then
-    Self.InitializeMouseInfo;
+  begin
+    FMouseMoveRow := -1;
+    FMouseMoveCol := -1;
+  end;
 end;
 
 function THCTableItem.MouseMove(Shift: TShiftState; X, Y: Integer): Boolean;
@@ -2749,9 +2752,9 @@ begin
   if ATop + vH < 0 then Exit;
 
   vRect := Bounds(ALeft, ATop, Width, vH);
-  if not APaintInfo.Print then
+  if APaintInfo.Print then
   begin
-    ACanvas.Brush.Color := clBtnFace;
+    ACanvas.Brush.Color := clWhite;
     ACanvas.FillRect(vRect);
   end;
 
