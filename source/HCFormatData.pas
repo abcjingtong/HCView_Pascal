@@ -1293,7 +1293,7 @@ begin
     Exit;
   end;
 
-  if (not FStyle.States.Contain(hosBatchInsert)) and Assigned(FOnItemReFormatRequest) then
+  if (not Style.States.Contain(hosBatchInsert)) and Assigned(FOnItemReFormatRequest) then
     FOnItemReFormatRequest(Self, AItem);
 end;
 

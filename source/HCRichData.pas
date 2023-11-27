@@ -2316,7 +2316,7 @@ begin
       if (AItem.Text = '') and (AIndex < Items.Count) and not Items[AIndex].ParaFirst then  // 是个回车，并且插入位置不是段首 XL20230808002
       begin
         AItem.Free;
-        GetFormatRangeByOffset(AIndex, 1, vFormatFirstDrawItemNo, vFormatLastItemNo);
+        GetFormatRange(AIndex, 1, vFormatFirstDrawItemNo, vFormatLastItemNo);
         FormatPrepare(vFormatFirstDrawItemNo, vFormatLastItemNo);
 
         UndoAction_ItemParaFirst(AIndex, 0, True);
