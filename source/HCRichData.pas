@@ -1030,8 +1030,17 @@ var
   vStyleNo, vParaNo: Integer;
 begin
   InitializeField;
-  vStyleNo := Items[0].StyleNo;
-  vParaNo := Items[0].ParaNo;
+  if FItems.Count > 0 then
+  begin
+    vStyleNo := Items[0].StyleNo;
+    vParaNo := Items[0].ParaNo;
+  end
+  else
+  begin
+    vStyleNo := 0;
+    vParaNo := 0;
+  end;
+
   inherited Clear;
   if (vStyleNo > THCStyle.Null) and (vStyleNo < Self.Style.TextStyles.Count) then
     FCurStyleNo := vStyleNo;
