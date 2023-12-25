@@ -593,23 +593,28 @@ var
   vEndDel     // 选中结束删除了
     : Boolean;
 begin
-  Result := False;
+  Result := True;
 
-  if not CanEdit then Exit;
+  if not CanEdit then
+  begin
+    Result := False;
+    Exit;
+  end;
 
   if not SelectPerfect then
   begin
     Self.DisSelect;
+    Result := False;
     Exit;
   end;
 
-  if not SelectExists then
+  if not SelectExists then Exit;
+
+  if not DoAcceptAction(SelectInfo.StartItemNo, SelectInfo.StartItemOffset, THCAction.actDeleteSelected) then
   begin
-    Result := True;
+    Result := False;
     Exit;
   end;
-
-  if not DoAcceptAction(SelectInfo.StartItemNo, SelectInfo.StartItemOffset, THCAction.actDeleteSelected) then Exit;
 
   vSelectSeekStart := IsSelectSeekStart;
   vDelCount := 0;
@@ -947,7 +952,6 @@ begin
 
   Self.InitializeField;
   ReSetSelectAndCaret(SelectInfo.StartItemNo, SelectInfo.StartItemOffset, not vSelectSeekStart);
-  Result := True;
 end;
 
 procedure THCRichData.DisActive;
