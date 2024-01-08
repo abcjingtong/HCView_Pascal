@@ -59,7 +59,7 @@ type
     procedure ApplySelectTextStyle(const AMatchStyle: THCStyleMatch); override;
     procedure ApplySelectParaStyle(const AMatchStyle: THCParaMatch); override;
     function GetDrawItemFormatTop(const ADrawItemNo: Integer): Integer; override;
-
+    procedure ReFormat; override;
     /// <summary> ȫѡ </summary>
     procedure SelectAll; override;
 
@@ -229,6 +229,12 @@ end;
 function THCTableCellData.PointInCellRect(const APt: TPoint): Boolean;
 begin
   Result := PtInRect(Bounds(0, 0, Width, FCellHeight), APt);
+end;
+
+procedure THCTableCellData.ReFormat;
+begin
+  inherited ReFormat;
+  DoFormatDirty;
 end;
 
 procedure THCTableCellData.ReFormatData(const AFirstDrawItemNo, ALastItemNo,
