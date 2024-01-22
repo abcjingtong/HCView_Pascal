@@ -75,7 +75,7 @@ type
     FMouseDownRow, FMouseDownCol,
     FMouseMoveRow, FMouseMoveCol,
     FMouseDownX, FMouseDownY,
-    FFormatHeight, FDefaultRowHeight
+    FFormatHeight, FDefaultRowHeight  // 默认行高，目前没有什么用，因为新建的行受默认样式影响高度并不固定
       : Integer;
     FResizeInfo: TResizeInfo;
     FMulCellUndo: THCMulCellUndo;
@@ -87,7 +87,7 @@ type
      在单个单元格中选择时结束行、列信息为-1 }
     FSelectCellRang: TSelectCellRang;
     FBorderColor: TColor;  // 边框颜色
-    FFixColor: TColor;
+    FFixColor: TColor;  // 固定行、列的背景色
     FRows: THCTableRows;  // 行
     FColWidths: TList<Integer>;  // 记录各列宽度(除边框、含FCellHPadding * 2)，方便有合并的单元格获取自己水平开始处的位置
     FPageBreaks: TObjectList<TPageBreak>;  // 记录各行分页时的信息
