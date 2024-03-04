@@ -157,7 +157,7 @@ end;
 
 function THCTableRow.CalcMaxCellDataHeight: Integer;
 var
-  i: Integer;
+  i, vH: Integer;
 begin
   if Assigned(FOnGetDefaultRowHeight) then
     Result := FOnGetDefaultRowHeight
@@ -168,8 +168,9 @@ begin
   begin
     if (Cols[i].CellData <> nil) and (Cols[i].RowSpan = 0) then  // 不是被合并的单元格，不是行合并的行单元格
     begin
-      if Cols[i].CellData.Height > Result then
-        Result := Cols[i].CellData.Height;
+      vH := Cols[i].CellData.Height;
+      if vH > Result then
+        Result := vH;
     end;
   end;
 end;
