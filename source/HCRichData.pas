@@ -4248,7 +4248,7 @@ var
           begin
             if DrawItems[vDrawItemNo].ItemNo > SelectInfo.StartItemNo then  // 移动到起始后面的Item上
             begin
-              SelectInfo.EndItemNo := vDrawItemNo;
+              SelectInfo.EndItemNo := DrawItems[vDrawItemNo].ItemNo;
               SelectInfo.EndItemOffset := vDrawItemOffset;
               CheckSelectEndEff;
               SetSelectSeekEnd;
