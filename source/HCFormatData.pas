@@ -641,6 +641,9 @@ var
     begin
       Result := jbpNone;
       case APosType of
+        jctBreak:
+          Result := jbpPrev;
+
         jctHZ:
           begin
             if APrevType in [jctZM, jctSZ, jctHZ, jctFH] then  // 当前位置是汉字，前一个是字母、数字、汉字
