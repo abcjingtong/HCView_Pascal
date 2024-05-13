@@ -1034,7 +1034,7 @@ var
   vStyleNo, vParaNo: Integer;
 begin
   InitializeField;
-  if FItems.Count > 0 then
+  if Items.Count > 0 then
   begin
     vStyleNo := Items[0].StyleNo;
     vParaNo := Items[0].ParaNo;
