@@ -36,6 +36,10 @@ uses
   function PtToPixel(const APt: Single; const ADpi: Cardinal): Cardinal;
   function PixelToPt(const APix, ADPI: Integer): Single;
   function TwipToPt(const AValue: Single): Single;
+  /// <summary> 96英寸下的像素转实际DPI下的像素值 </summary>
+  function Pix96ToLogic(const APix: Integer): Integer;
+  /// <summary> pt缩放到96英寸下的pt </summary>
+  function PtTo96(const APt: Single): Single;
 
 var
   /// <summary> 水平1毫米dpi数 </summary>
@@ -107,6 +111,16 @@ end;
 function PixelToPt(const APix, ADPI: Integer): Single;
 begin
   Result := APix / ADPI * 72;
+end;
+
+function Pix96ToLogic(const APix: Integer): Integer;
+begin
+  Result := Round(APix * DPIScale);
+end;
+
+function PtTo96(const APt: Single): Single;
+begin
+  Result := APt / DPIScale;
 end;
 
 initialization
