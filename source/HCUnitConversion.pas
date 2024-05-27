@@ -52,6 +52,7 @@ var
   PixelsPerInchX: Integer;
   /// <summary> 垂直1英寸对应的像素数 </summary>
   PixelsPerInchY: Integer;
+  DPIScale: Single = 1;
 
 implementation
 
@@ -128,6 +129,7 @@ initialization
   try
     PixelsPerInchX := GetDeviceCaps(vDC, LOGPIXELSX);  // 每英寸水平逻辑像素数，1英寸dpi数
     PixelsPerInchY := GetDeviceCaps(vDC, LOGPIXELSY);  // 每英寸水平逻辑像素数，1英寸dpi数
+    DPIScale := GetDeviceCaps(vDC, LOGPIXELSX) / HCDefaultDPI;
   finally
     DeleteDC(vDC);
   end;
