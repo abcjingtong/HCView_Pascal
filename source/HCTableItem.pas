@@ -1888,7 +1888,8 @@ var
     begin
       if (vEditCell.CellData.SelectLastLine) and (FSelectCellRang.StartRow < Self.RowCount - 1) then  // 找下一行单元格
       begin
-        GetDestCell(FSelectCellRang.StartRow + 1, FSelectCellRang.StartCol, vRow, vCol);
+        GetSourceCell(FSelectCellRang.StartRow, FSelectCellRang.StartCol, vRow, vCol);
+        GetDestCell(vRow + 1, FSelectCellRang.StartCol, vRow, vCol);
         if ((vRow <> FSelectCellRang.StartRow) or (vCol <> FSelectCellRang.StartCol))  // 同列下一个单元格的目标不是我
           and (vRow >= 0) and (vCol >= 0) // 下一行有有效的单元格
         then
