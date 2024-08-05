@@ -1611,12 +1611,14 @@ var
         begin
           UndoAction_DeleteText(AItemNo, SelectInfo.StartItemOffset + 1, vSelText);
           vItem.Text := vsBefor;  // 保留前半部分文本
+          vItem.DisSelect;
 
           // 创建选中文本对应的Item
           vSelItem := CreateDefaultTextItem;
           vSelItem.ParaNo := vItem.ParaNo;
           vSelItem.StyleNo := vStyleNo;
           vSelItem.Text := vSelText;
+          vSelItem.SelectComplate;
 
           if vAfterItem <> nil then  // 有后半部分，中间的是新样式，前后肯定不能合并
           begin
@@ -1712,6 +1714,10 @@ var
         begin
           vAfterItem := Items[AItemNo].BreakByOffset(SelectInfo.StartItemOffset);  // 后半部分对应的Item
           UndoAction_DeleteText(AItemNo, SelectInfo.StartItemOffset + 1, vAfterItem.Text);
+
+          vAfterItem.SelectComplate;
+          Items[AItemNo].DisSelect;
+
           // 为方便UndoAction_ItemStyle所以先插入，再修改样式
           Style.States.Include(hosInsertBreakItem);
           try
@@ -1768,12 +1774,14 @@ var
           UndoAction_DeleteBackText(AItemNo, 1, vSelText);
           Delete(vText, 1, SelectInfo.EndItemOffset);
           vItem.Text := vText;
+          vItem.DisSelect;
 
           vBeforItem := CreateDefaultTextItem;
           vBeforItem.ParaNo := vItem.ParaNo;
           vBeforItem.StyleNo := vStyleNo;
           vBeforItem.Text := vSelText;  // 创建前半部分文本对应的Item
           vBeforItem.ParaFirst := vItem.ParaFirst;
+          vBeforItem.SelectComplate;
           if vItem.ParaFirst then
           begin
             UndoAction_ItemParaFirst(AItemNo, 0, False);
@@ -4222,7 +4230,7 @@ var
     end;
 
   var
-    vDrawItemNo, vDrawItemOffset: Integer;
+    vDrawItemNo, vDrawItemOffset, vStartNo, vStartOffset: Integer;
   begin
     if Shift = [ssShift] then  // Shift+Up
     begin
@@ -4308,8 +4316,14 @@ var
     begin
       if vSelectExist then  // 有选中内容
       begin
-        SelectInfo.EndItemNo := -1;
-        SelectInfo.EndItemOffset := -1;
+        // SelectInfo.EndItemNo := -1;
+        // SelectInfo.EndItemOffset := -1;
+        vStartNo := SelectInfo.StartItemNo;
+        vStartOffset := SelectInfo.StartItemOffset;
+        DisSelect();
+        SelectInfo.StartItemNo := vStartNo;
+        SelectInfo.StartItemOffset := vStartOffset;
+        CaretDrawItemNo := GetDrawItemNoByOffset(vStartNo, vStartOffset);
       end
       else  // 无选中内容
       begin
