@@ -92,6 +92,7 @@ begin
   end;
 
   ACanvas.Pen.Color := clBlack;
+  ACanvas.Pen.Width := 1;
   ACanvas.MoveTo(ADrawRect.Left + FLeftRect.Right + Padding, ADrawRect.Top + TopRect.Bottom + Padding);
   ACanvas.LineTo(ADrawRect.Left + FRightRect.Left - Padding, ADrawRect.Top + TopRect.Bottom + Padding);
 
