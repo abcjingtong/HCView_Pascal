@@ -111,6 +111,7 @@ begin
   if not FLineHide then  // ·ÖÊýÏß
   begin
     ACanvas.Pen.Color := clBlack;
+    ACanvas.Pen.Width := 1;
     ACanvas.MoveTo(ADrawRect.Left + FPadding, ADrawRect.Top + FTopRect.Bottom + FPadding);
     ACanvas.LineTo(ADrawRect.Left + Width - FPadding, ADrawRect.Top + FTopRect.Bottom + FPadding);
   end;
