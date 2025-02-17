@@ -23,7 +23,6 @@ type
   public
     // 以下字段，仅在需要为True时赋值，不可使用 RePaint := A <> B的形式，防止将其他处修改的True覆盖
     RePaint: Boolean;  // 所有参数只能写赋值为True的代码，不能赋值为多个变量的与、或、非
-    //ReSized: Boolean;  // Item有大小改变，只在TCustomRichData.MouseUp中判断
     ReCaret,  // 重新计算光标
     ReStyle,  // 重新计算光标时获取光标处样式
     ReScroll,  // 滚动到光标位置
